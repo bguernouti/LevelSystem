@@ -1,5 +1,6 @@
-""" Small Factrory Pattern"""
+import time
 
+""" Small Factrory Method Pattern"""
 class Level: 
 
     _Level = int
@@ -14,21 +15,28 @@ class Level:
         self._MaxScore = maxscore
         self._Score = 0
 
-
-class LevelCreator: 
+class LevelCreator:
 
     @staticmethod
     def Create(rank,maxscore):
-        
+
         _level = Level
 
-        if (rank < _level._MaxRank):
+        if (rank <= _level._MaxRank):
             _level = Level(rank,maxscore)
         else: 
             _level = False  
+
         return _level
 
 level = LevelCreator.Create(rank=49,maxscore=1000)
 
-print(vars(level))
-#[print(attr) for attr in dir(level) if not attr.startswith("__")]
+while level._Score < level._MaxScore:
+    level._Score += 100
+    print(level._Score)
+    time.sleep(1)
+
+if level._Score >= level._MaxScore: 
+    
+    level = LevelCreator.Create(rank=level._Level +1,maxscore=2000)
+    print(vars(level))
