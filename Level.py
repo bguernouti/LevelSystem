@@ -1,8 +1,10 @@
 import time
+from Level_List import Level_List as lvls
 
 """ Small Factrory Method Pattern"""
-class Level: 
+class Level:
 
+    __Levels = lvls.ListOfLevels
     _Level = int
     _MaxScore = int
     _Score = int
@@ -14,6 +16,9 @@ class Level:
         self._Level = level
         self._MaxScore = maxscore
         self._Score = 0
+        
+    def getLevels(self):
+        return self.__Levels
 
 class LevelCreator:
 
@@ -25,11 +30,11 @@ class LevelCreator:
         if (rank <= _level._MaxRank):
             _level = Level(rank,maxscore)
         else: 
-            _level = False  
+            _level = False
 
         return _level
 
-level = LevelCreator.Create(rank=49,maxscore=1000)
+"""level = LevelCreator.Create(rank=49,maxscore=1000)
 
 while level._Score < level._MaxScore:
     level._Score += 100
@@ -39,4 +44,4 @@ while level._Score < level._MaxScore:
 if level._Score >= level._MaxScore: 
     
     level = LevelCreator.Create(rank=level._Level +1,maxscore=2000)
-    print(vars(level))
+    print(vars(level))"""
