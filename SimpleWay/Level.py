@@ -17,10 +17,16 @@ class Level:
             return
 
         self._Level += 1
+
+        """ Last Level check """
         if self._Level > len(self.__List):
+
+            self._Level = len(self.__List)
             self._Score = self._MaxScore
+
             return
-        
+        """ End of checking Last Level """
+
         self.getLevelScore(self._Level)
 
     def getLevelScore(self,self_level):
